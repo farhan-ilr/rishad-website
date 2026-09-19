@@ -30,6 +30,7 @@ function FrameExperience() {
     if (!context) return
     let cancelled = false
     let loaded = 0
+    const requested = new Set<number>()
     const images = imagesRef.current
     const draw = (index: number) => {
       const image = images[index]
@@ -51,6 +52,7 @@ function FrameExperience() {
       const travel = Math.max(section.offsetHeight - window.innerHeight, 1)
       const progress = Math.min(Math.max(-bounds.top / travel, 0), 1)
       const target = Math.round(progress * (frameCount - 1))
+      loadFrames(target, reducedMotion ? 0 : 8)
       if (target !== frameRef.current) {
         frameRef.current = target
         draw(target)
@@ -60,9 +62,9 @@ function FrameExperience() {
       if (rafRef.current === null) rafRef.current = requestAnimationFrame(render)
     }
     const onResize = () => resize()
-    resize()
-    const priority = reducedMotion ? [0] : Array.from({ length: frameCount }, (_, index) => index)
-    priority.forEach((index) => {
+    const loadFrame = (index: number) => {
+      if (index < 0 || index >= frameCount || requested.has(index) || images[index]) return
+      requested.add(index)
       const image = new Image()
       image.decoding = 'async'
       image.src = framePath(index)
@@ -74,9 +76,15 @@ function FrameExperience() {
           setReady(true)
           draw(0)
         }
-        if (loaded % 10 === 0 || loaded === frameCount) setLoadProgress(Math.round((loaded / frameCount) * 100))
+        setLoadProgress(Math.min(100, Math.round((loaded / Math.min(frameCount, 18)) * 100)))
+        if (index === frameRef.current) draw(index)
       }
-    })
+    }
+    function loadFrames(center: number, radius: number) {
+      for (let offset = -radius; offset <= radius; offset += 1) loadFrame(center + offset)
+    }
+    resize()
+    loadFrames(0, reducedMotion ? 0 : 9)
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
     return () => {
