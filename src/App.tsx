@@ -85,16 +85,22 @@ function FrameExperience() {
         loaded += 1
         if (index < initialFrameCount) {
           initialLoaded.add(index)
-          setLoadProgress(Math.round((initialLoaded.size / initialFrameCount) * 100))
-          if (initialLoaded.size === initialFrameCount) setReady(true)
+          const progress = Math.round((initialLoaded.size / initialFrameCount) * 100)
+          setLoadProgress(progress)
+          if (index === 0 || initialLoaded.size >= Math.min(3, initialFrameCount) || initialLoaded.size === initialFrameCount) {
+            setReady(true)
+          }
         }
         if (index === Math.round(frameRef.current)) draw(index)
       }
       image.onerror = () => {
         if (cancelled || index >= initialFrameCount) return
         initialLoaded.add(index)
-        setLoadProgress(Math.round((initialLoaded.size / initialFrameCount) * 100))
-        if (initialLoaded.size === initialFrameCount) setReady(true)
+        const progress = Math.round((initialLoaded.size / initialFrameCount) * 100)
+        setLoadProgress(progress)
+        if (index === 0 || initialLoaded.size >= Math.min(3, initialFrameCount) || initialLoaded.size === initialFrameCount) {
+          setReady(true)
+        }
       }
     }
     function loadFrames(center: number, radius: number) {
