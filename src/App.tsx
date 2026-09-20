@@ -232,7 +232,7 @@ function App() {
               <div className="contact-stack">
                 <a className="contact-link" href="mailto:rishadhparmapan@gmail.com"><span className="inline-icon"><Mail size={12} strokeWidth={2} /></span> rishadhparmapan@gmail.com</a>
                 <a href="https://www.instagram.com/_rish_ad__p/" target="_blank" rel="noreferrer"><span className="inline-icon"><Camera size={12} strokeWidth={2} /></span> Instagram</a>
-                <a href="https://wa.me/99946801100" target="_blank" rel="noreferrer"><span className="inline-icon"><MessageCircle size={12} strokeWidth={2} /></span> WhatsApp</a>
+                <a href="https://wa.me/919544565967" target="_blank" rel="noreferrer"><span className="inline-icon"><MessageCircle size={12} strokeWidth={2} /></span> WhatsApp</a>
                 <a href="https://www.behance.net/Rishad777" target="_blank" rel="noreferrer"><span className="inline-icon"><Palette size={12} strokeWidth={2} /></span> Behance</a>
               </div>
               <p className="contact-place"><span className="inline-icon inline-icon-map"><MapPin size={12} strokeWidth={2} /></span> Malappuram, Kerala<br />India</p>
@@ -241,7 +241,7 @@ function App() {
         </div>
       </section>
     </main>
-    <footer className="site-footer"><span>Rishad / Interior designer</span><div className="footer-links"><a href="https://www.behance.net/Rishad777" target="_blank" rel="noreferrer">Behance <span className="inline-icon"><Palette size={10} strokeWidth={2} /></span></a><a href="https://www.instagram.com/_rish_ad__p/" target="_blank" rel="noreferrer">Instagram <span className="inline-icon"><Camera size={10} strokeWidth={2} /></span></a><a href="https://wa.me/99946801100" target="_blank" rel="noreferrer">WhatsApp <span className="inline-icon"><MessageCircle size={10} strokeWidth={2} /></span></a></div><span>© 2026</span></footer>
+    <footer className="site-footer"><span>Rishad / Interior designer</span><div className="footer-links"><a href="https://www.behance.net/Rishad777" target="_blank" rel="noreferrer">Behance <span className="inline-icon"><Palette size={10} strokeWidth={2} /></span></a><a href="https://www.instagram.com/_rish_ad__p/" target="_blank" rel="noreferrer">Instagram <span className="inline-icon"><Camera size={10} strokeWidth={2} /></span></a><a href="https://wa.me/919544565967" target="_blank" rel="noreferrer">WhatsApp <span className="inline-icon"><MessageCircle size={10} strokeWidth={2} /></span></a></div><span>© 2026</span></footer>
     {activePanel && <SectionSheet panel={activePanel} projects={projects} onClose={() => setActivePanel(null)} onProjectOpen={(project) => { setActivePanel(null); setActiveProject(project) }} />}
     {activeProject && <ProjectViewer project={activeProject} onClose={() => setActiveProject(null)} />}
   </div>
